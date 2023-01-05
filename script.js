@@ -4,4 +4,8 @@ function getComputerChoice() {
     console.log(moves[random]);
 }
 
-getComputerChoice();
+playerSelection = window.prompt('choose: rock, paper, scissors').toLowerCase();
+
+function playRound(playerSelection, computerSelection){
+
+}
