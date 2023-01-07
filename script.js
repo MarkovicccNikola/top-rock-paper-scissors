@@ -1,9 +1,11 @@
 let value1;
 let computerChoice;
 let playerChoice;
+let playerInput;
 let round = 0;
 let playerScore = 0;
 let computerScore = 0;
+let amountOfDraws = 0;
 
 function generateRandomInteger(max) {
     return Math.floor(Math.random() * max) + 1;
@@ -27,16 +29,24 @@ function getComputerChoice() {
 
 function getPlayerChoice() {
     playerChoice = window.prompt("enter rock, paper or scissors:").toLowerCase();
+    
+    if (playerChoice === "rock" || playerChoice === "paper" || playerChoice === "scissors") {
+        return playerChoice;
+    } else {
+        alert("not correct.");
+        getPlayerChoice();
+    }
+
 }
 
 function playRound() {
 
-    getComputerChoice();
     getPlayerChoice();
+    getComputerChoice();
 
     if (computerChoice === playerChoice) {
         console.log("draw");
-        return (++round);
+        return (++round, ++amountOfDraws);
     } else if (computerChoice === "rock" && playerChoice === "paper") {
         console.log("player wins");
         return (++round, ++playerScore);
@@ -57,7 +67,16 @@ function playGame() {
     for (let i = 0; i < 5; i++) {
         playRound();
     }
-    console.log(computerScore, playerScore);
+
+    console.log("Player Wins:" + playerScore, "Computer Wins:" + computerScore, "Draws:" + amountOfDraws);
+
+    if (computerScore > playerScore) {
+        console.log("Computer Won :(");
+    } else if (playerScore > computerScore) {
+        console.log("Player Won :D");
+    } else {
+        console.log("Draw :O");
+    }
 }
 
-playGame(); 
+playGame();
