@@ -6,6 +6,7 @@ let round = 0;
 let playerScore = 0;
 let computerScore = 0;
 let amountOfDraws = 0;
+let playerOriginalInput
 
 function generateRandomInteger(max) {
     return Math.floor(Math.random() * max) + 1;
@@ -28,12 +29,13 @@ function getComputerChoice() {
 }
 
 function getPlayerChoice() {
-    playerChoice = window.prompt("enter rock, paper or scissors:").toLowerCase();
+    playerOriginalInput = window.prompt("enter rock, paper or scissors:");
+    playerChoice = playerOriginalInput.toLowerCase();
     
     if (playerChoice === "rock" || playerChoice === "paper" || playerChoice === "scissors") {
         return playerChoice;
     } else {
-        alert("not correct.");
+        alert("You entered an unexpected value: " + playerOriginalInput);
         getPlayerChoice();
     }
 
