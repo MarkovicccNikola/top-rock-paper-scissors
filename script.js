@@ -39,35 +39,43 @@ function getComputerChoice() {
 
 function playRound() {
   getComputerChoice();
+  const result = document.createElement("p");
+  const finalResult = document.createElement("h1");
   for (; computerScore < 5 && playerScore < 5; computerScore++, playerScore++) {
     if (computerChoice === playerChoice) {
       console.log("draw", computerChoice);
-      const newText = document.createTextNode("Draw");
-      resultsSection.appendChild(newText);
+      result.textContent = "Draw";
+      resultsSection.prepend(result);
       return ++round, ++amountOfDraws;
     } else if (computerChoice === "rock" && playerChoice === "paper") {
       console.log("player wins", computerChoice);
-      const newText = document.createTextNode("Player Wins");
-      resultsSection.appendChild(newText);
+      result.textContent = "Player Wins";
+      resultsSection.prepend(result);
       return ++round, ++playerScore;
     } else if (computerChoice === "paper" && playerChoice === "scissors") {
       console.log("player wins", computerChoice);
-      const newText = document.createTextNode("Player Wins");
-      resultsSection.appendChild(newText);
+      result.textContent = "Player Wins";
+      resultsSection.prepend(result);
       return ++round, ++playerScore;
     } else if (computerChoice === "scissors" && playerChoice === "rock") {
       console.log("player wins", computerChoice);
-      const newText = document.createTextNode("Player Wins");
-      resultsSection.appendChild(newText);
+      result.textContent = "Player Wins";
+      resultsSection.prepend(result);
       return ++round, ++playerScore;
     } else {
       console.log("computer wins", computerChoice);
-      const newText = document.createTextNode("Computer Wins");
-      resultsSection.appendChild(newText);
+      result.textContent = "Computer Wins";
+      resultsSection.prepend(result);
       return ++round, ++computerScore;
     }
   }
-  alert("stop");
+  if (computerScore === 5) {
+    finalResult.textContent = "COMPUTER WON THIS GAME :(";
+    resultsSection.prepend(finalResult);
+  } else {
+    finalResult.textContent = "PLAYER WON THIS GAME :D";
+    resultsSection.prepend(finalResult);
+  }
 }
 
 function playGame() {
